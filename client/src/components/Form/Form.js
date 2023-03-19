@@ -1,9 +1,20 @@
 
 
 export default function Form() {
+
+
+  const handleSubmit =()=>{
+
+  }
+
+
     return (
       <div>
-        <h1 className="text-2xl font-semibold">Form</h1>
+        <form autoComplete="off" noValidate onSubmit={handleSubmit} >
+        <h2>Creating a Memory</h2>
+        
+
+        </form>
       </div>
     );
   }

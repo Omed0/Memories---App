@@ -1,8 +1,20 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { getPosts } from './actions/posts'
+
 import Memories from './images/memories.png'
 import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
 
 export default function App() {
+
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
+
   return (
     <section className='w-9/12 mx-auto'>
       <div className='w-full h-14 flex items-center justify-center gap-4 shadow-md shadow-slate-400 rounded-xl mx-auto mt-6'>
