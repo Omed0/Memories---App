@@ -1,19 +1,22 @@
-import Post from './post/Post'
 import { useSelector } from 'react-redux';
+import { GrInProgress } from 'react-icons/gr';
+import Post from './post/Post';
 
-export default function Posts() {
 
-  const posts = useSelector((state)=>state.posts)
-  console.log(posts);
+const Posts = ({ setCurrentId }) => {
+  const posts = useSelector((state) => state.posts);
 
   return (
-    <div>
-
-      <h1 className="text-2xl font-semibold">Posts</h1>
-      <Post />
-      <Post />
-
-    </div>
+    !posts.length ? <GrInProgress /> : (
+      <aside className='' >
+        {posts.map((post) => (
+          <div key={post._id} >
+            <Post post={post} setCurrentId={setCurrentId} />
+          </div>
+        ))}
+      </aside>
+    )
   );
-}
+};
 
+export default Posts;
