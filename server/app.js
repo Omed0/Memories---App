@@ -14,12 +14,18 @@ dotenv.config();
 app.use(morgan('dev'))
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-app.use(cors());
+const corsSettings = {
+    origin: true,
+    methods: ["POST", "GET", "DELETE", "PUT"],
+    credentials: true,
+};
+
+app.use(cors(corsSettings));
 
 app.use('/posts', postRoute);
 
 
 const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(()=> app.listen(PORT, ()=>console.log(`server running on http://localhost:${PORT}`)))
-    .catch((error)=>console.log(error));
+    .then(() => app.listen(PORT, () => console.log(`server running on http://localhost:${PORT}`)))
+    .catch((error) => console.log(error));

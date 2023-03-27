@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { getPosts } from './actions/posts'
 
@@ -10,7 +10,7 @@ export default function App() {
 
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
@@ -28,7 +28,7 @@ export default function App() {
           <section className='grid grid-cols-3 justify-between items-stretch gap-3 font-serif'>
             <div className='col-span-2'>
               <Posts setCurrentId={setCurrentId} />
-            </div> 
+            </div>
             <div className='col-span-1'>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
             </div>
