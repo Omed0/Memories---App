@@ -12,7 +12,7 @@ export default function Post({ post, setCurrentId }) {
 
   return (
     <aside key={post._id}>
-      <img src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} alt='post' />
+      <img src={post.selectedFile} title={post.title} alt='post' />
       <div>
         <h1 className=''>{post.creator}</h1>
         <h1 className=''>{moment(post.createdAt).fromNow()}</h1>
@@ -25,18 +25,18 @@ export default function Post({ post, setCurrentId }) {
       <div>
         <h1 className=''>{post.tags.map((tag) => `#${tag}`)}</h1>
       </div>
-        <h1 className=''>{post.title}</h1>
+      <h1 className=''>{post.title}</h1>
       <article>
         <h1 className=''>{post.message}</h1>
       </article>
       <div>
         <button onClick={() => dispatch(likePost(post._id))}>
-          <AiFillLike/>
+          <AiFillLike />
           Like
           {post.likeCount}
         </button>
         <button onClick={() => dispatch(deletePost(post._id))}>
-          <MdDelete/>
+          <MdDelete />
           Delete
         </button>
       </div>
