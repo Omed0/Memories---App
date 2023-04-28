@@ -12,11 +12,7 @@ export default function input({ name, type, placeholder, handleChange, handleSho
                 placeholder={placeholder}
             />
             <>
-                {name === 'password' ? (
-                    <div onClick={handleShowPassword} className='absolute top-2 right-8'>
-                        {type === 'password' ? <MdVisibility color="gray" size={26} /> : <MdVisibilityOff color="gray" size={26} />}
-                    </div>
-                ) : name === 'confirmPassword' ? (
+                {name === 'password' && 'confirmPassword' ? (
                     <div onClick={handleShowPassword} className='absolute top-2 right-8'>
                         {type === 'password' ? <MdVisibility color="gray" size={26} /> : <MdVisibilityOff color="gray" size={26} />}
                     </div>
