@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { GoogleLogin } from "@leecheuk/react-google-login"
+// import { GoogleLogin } from "@leecheuk/react-google-login"
 import { GrSecure } from "react-icons/gr"
 import Input from "./input";
 import { useDispatch } from "react-redux"
-import { Signup, Signin } from "../../actions/auth";
+import { signin, signup } from "../../actions/auth";
+
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
 
@@ -13,8 +14,6 @@ export default function Auth() {
   const [formData, setFormData] = useState(initialState)
   const dispatch = useDispatch();
 
-
-  const location = window.history;
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup)
@@ -28,9 +27,9 @@ export default function Auth() {
     console.log(formData);
 
     if (isSignup) {
-      dispatch(Signup(formData, location))
+      dispatch(signup(formData))
     } else {
-      dispatch(Signin(formData, location))
+      dispatch(signin(formData))
     }
   };
 
@@ -39,23 +38,23 @@ export default function Auth() {
     setFormData({ ...formData, [name]: value })
   };
 
-  const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
 
-    try {
-      dispatch({ type: 'AUTH', data: { result, token } })
+  //   try {
+  //     dispatch({ type: 'AUTH', data: { result, token } })
 
-      window.history.go('/');
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //     window.history.go('/');
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
-  const googleFailure = (error) => {
-    console.log(error)
-    console.log("Google Sign In was unsuccessful. Try Again Later")
-  }
+  // const googleFailure = (error) => {
+  //   console.log(error)
+  //   console.log("Google Sign In was unsuccessful. Try Again Later")
+  // }
 
   return (
     <section className="w-4/12 min-w-[18rem] mx-auto mt-14 p-2 bg-slate-700 rounded-lg">
@@ -78,7 +77,7 @@ export default function Auth() {
           </>
         }
         <button type="submit" className="w-11/12 mx-auto p-2 bg-[#1D4ED8] mt-4 mb-6 text-white rounded">{isSignup ? "SIGN UP" : "SIGN IN"}</button>
-        <GoogleLogin
+        {/* <GoogleLogin
           clientId="742034412427-ohf5p6hpjp8fkaf2ohfd68fgjunjp31i.apps.googleusercontent.com"
           render={(renderProps) => {
             <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="w-11/12 mx-auto p-2 bg-pink-600 mt-4 mb-6 text-white rounded">
@@ -88,7 +87,7 @@ export default function Auth() {
           onSuccess={googleSuccess}
           onFailure={googleFailure}
           cookiePolicy="single_host_origin"
-        />
+        /> */}
         <div className="ml-auto px-3">
           <button className="text-slate-50" onClick={switchMode} type="button">
             {isSignup ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}

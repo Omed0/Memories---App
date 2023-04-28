@@ -14,9 +14,9 @@ export default function Home() {
     }, [currentId, dispatch]);
 
     return (
-        <aside className='p-5'>
+        <aside className='p-5 flex justify-center'>
             <div>
-                <section className='grid grid-cols-3 justify-between items-stretch gap-3 font-serif'>
+                <section className='flex flex-col items-center md:grid md:grid-cols-3 md:justify-between md:items-stretch gap-3 font-serif'>
                     <div className='col-span-2'>
                         <Posts setCurrentId={setCurrentId} />
                     </div>

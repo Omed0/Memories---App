@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
-import User from "../models/user"
+import User from "../models/user.js"
 
 const secret = 'test';
 
@@ -34,7 +34,7 @@ export const signup = async (req, res) => {
 
         if (password !== confirmPassword) return res.status(400).json({ message: "Password don't match." });
         const hashPassword = await bcrypt.hash(password, 12)
-        const result = new User.create({
+        const result = new User({
             email,
             password: hashPassword,
             name: `${firstName} ${lastName}`

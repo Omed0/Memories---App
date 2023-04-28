@@ -11,7 +11,7 @@ export default function Navbar() {
     const logout = () => {
         dispatch({ type: 'LOGOUT' })
 
-        window.history.go('/')
+        window.history.go('/');
         setUser(null)
     }
 

@@ -14,7 +14,7 @@ export default function Post({ post, setCurrentId }) {
     <aside key={post._id}>
       <img src={post.selectedFile} title={post.title} alt='post' />
       <div>
-        <h1 className=''>{post.creator}</h1>
+        <h1 className=''>{post.name}</h1>
         <h1 className=''>{moment(post.createdAt).fromNow()}</h1>
       </div>
       <div>

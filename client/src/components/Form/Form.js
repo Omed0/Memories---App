@@ -5,9 +5,10 @@ import FileBase from 'react-file-base64'
 
 
 export default function Form({ currentId, setCurrentId }) {
-  const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+  const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'))
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,18 +28,28 @@ export default function Form({ currentId, setCurrentId }) {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
       clear();
     } else {
-      dispatch(updatePost(currentId, postData));
+      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
       clear();
     }
   };
 
+  if (!user?.result?.name) {
+    return (
+      <div>
+        <text>
+          Please Sign In to create your own memories and like other's memories.
+        </text>
+      </div>
+    )
+  }
+
 
 
   return (
-    <div className="max-w-[90%] w-10/12 float-right shadow-lg rounded overflow-x-hidden">
+    <div className="min-w-[16rem] w-9/12 md:w-full mx-auto md:float-right shadow-lg rounded overflow-x-hidden">
       <form className="flex flex-col mx-auto items-center w-11/12" autoComplete="off" noValidate onSubmit={handleSubmit} >
         <h2 className="font-sans mt-4 mb-2 text-xl font-semibold">Creating a Memory</h2>
         <input className="w-[80%] mt-1 p-3 shadow-sm shadow-zinc-600 rounded-md border-[1px] border-stone-300 outline-none" name="creator" type="text" placeholder="Creator" onChange={handleChange} value={postData.creator} />

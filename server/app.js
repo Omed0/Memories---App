@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 import multer from 'multer'
 // import routes
 import postRoutes from './routes/posts.js'
-import userRoutes from './routes/users.js'
+import userRoutes from './routes/user.js'
 
 
 const upload = multer({ storage: multer.memoryStorage() });
