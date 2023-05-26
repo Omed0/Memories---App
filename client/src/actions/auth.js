@@ -1,5 +1,6 @@
 import { AUTH } from '../constants/actionTypes';
 import * as api from '../api/index.js';
+import { redirect } from 'react-router-dom';
 
 
 export const signin = (formData) => async (dispatch) => {
@@ -7,7 +8,7 @@ export const signin = (formData) => async (dispatch) => {
         const { data } = await api.signIn(formData);
 
         dispatch({ type: AUTH, data });
-        window.history.go('/');
+        redirect('/');
 
     } catch (error) {
         console.log(error);
@@ -19,7 +20,7 @@ export const signup = (formData) => async (dispatch) => {
         const { data } = await api.signUp(formData);
 
         dispatch({ type: AUTH, data });
-        window.history.go('/');
+        redirect('/');
 
     } catch (error) {
         console.log(error);
